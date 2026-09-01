@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-html-config
+data:
+  index.html: |
+    <html>
+    <head><title>Project 02</title></head>
+    <body>
+      <h1>Served from a ConfigMap</h1>
+      <p>This HTML file was never baked into the nginx image.</p>
+      <p>Made by Amit - Devops - Cloud Engineer</p>
+    </body>
+    </html>
+  greeting: "Hello from ConfigMap env var"
