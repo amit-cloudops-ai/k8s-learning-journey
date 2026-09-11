@@ -4,7 +4,8 @@ Demonstrates how Kubernetes prevents any single container from consuming
 unlimited CPU/memory, and how it caps total resource usage across an entire
 namespace.
 
-![Uploading cpu_request_vs_limit.png…]()
+<img width="2720" height="880" alt="cpu_request_vs_limit" src="https://github.com/user-attachments/assets/53f329c3-ba56-4783-a9c9-03552d1d9d8e" />
+
 
 ## 1. The problem this solves
 
