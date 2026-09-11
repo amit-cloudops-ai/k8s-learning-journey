@@ -5,7 +5,7 @@ durable storage (via PVC/PV), unlike a Deployment where Pods are interchangeable
 and storage (emptyDir) dies with the Pod.
 
 ## Architecture
-![StatefulSet + PVC architecture](architecture-diagram.png)
+![StatefulSet + PVC architecture](img width="2720" height="1720" alt="statefulset_pvc_architecture" src="https://github.com/user-attachments/assets/b6a9a8d3-7cfb-4f84-bb09-94df2807a350" /)
 <img width="2720" height="1720" alt="statefulset_pvc_architecture" src="https://github.com/user-attachments/assets/b6a9a8d3-7cfb-4f84-bb09-94df2807a350" />
 
 ## Files
