@@ -6,6 +6,7 @@ and storage (emptyDir) dies with the Pod.
 
 ## Architecture
 ![StatefulSet + PVC architecture](architecture-diagram.png)
+<img width="2720" height="1720" alt="statefulset_pvc_architecture" src="https://github.com/user-attachments/assets/b6a9a8d3-7cfb-4f84-bb09-94df2807a350" />
 
 ## Files
 - `headless-service.yaml` — headless Service (clusterIP: None) required for StatefulSet DNS
