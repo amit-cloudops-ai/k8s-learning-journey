@@ -1,14 +1,13 @@
 # Kubernetes Learning Journey
 
 Hands-on Kubernetes fundamentals, one project per folder, building from "bare Pod"
-up to a fully autoscaling, self-healing application. Each project is small on
-purpose — the goal is to *feel* why each object exists, not just memorize YAML.
+up to a fully autoscaling, self-healing application. Each lab is small on
+purpose — the goal is to understand why each object exists, not just memorize YAML.
 
 ## Cluster setup
 
 Everything here runs in a dedicated, isolated **kind** cluster called
-`k8s-basics` — kept separate from any other clusters on the machine (demo
-apps, other tools) so nothing collides.
+`k8s-basics` — kept separate from any other clusters on the machine so nothing collides.
 
 ```bash
 kind create cluster --name k8s-basics --config kind-config.yaml
@@ -17,31 +16,45 @@ kubectl create namespace basics
 kubectl config set-context --current --namespace=basics
 ```
 
-`kind-config.yaml` maps container port 30080 out to the host — without this,
-`kind` clusters don't expose NodePort services to `localhost` by default
-(unlike Docker Desktop's built-in cluster, which does this automatically).
-This tripped me up in project 01 — worth remembering for Ingress later.
+`kind-config.yaml` maps container port 30080 out to the host — useful for reaching NodePort services from `localhost`.
 
-Always confirm the right context before running anything:
+Always confirm the active context before running commands:
 
 ```bash
 kubectl config current-context   # should say kind-k8s-basics
 kubectl get pods                 # should be scoped to the basics namespace
 ```
 
-## Projects
+## Labs
 
-| # | Project | Concept |
-|---|---------|---------|
-| 01 | [Pod → Deployment → Service](./01-pod-deployment-service) | Why each object exists, layered on top of each other |
-| 02 | ConfigMaps + Secrets | Externalizing config, env vs mounted volume |
-| 03 | Probes | Liveness / Readiness / Startup |
-| 04 | Multi-container Pod | Sidecar pattern, shared volume |
-| 05 | StatefulSet + PVC | Stateful workloads, storage persistence |
-| 06 | ResourceQuota + LimitRange | Resource management, OOMKill |
-| 07 | RBAC | ServiceAccount, Role, RoleBinding |
-| 08 | Ingress | Path/host-based routing |
-| 09 | HPA | Autoscaling under real load |
-| 10 | Rolling update + rollback | Safe deploys, incident recovery |
+| # | Lab | Concept | Status |
+|---|---|---|---|
+| 01 | [Pod → Deployment → Service](./01-pod-deployment-service) | Workloads, replicas, stable service networking | Available |
+| 02 | [ConfigMaps + Secrets](./02-configmaps-secrets) | Externalized configuration and sensitive values | Available |
+| 03 | [Probes](./03-probes) | Liveness, readiness, and startup checks | Available |
+| 04 | [Multi-container Pod](./04-multi-container-pod) | Sidecar pattern and shared volumes | Available |
+| 05 | [StatefulSet + PVC](./05-statefulset-pvc) | Stateful workloads and persistent storage | Available |
+| 06 | [ResourceQuota + LimitRange](./06-resourcequota-limitrange) | Resource governance and limits | Available |
+| 07 | RBAC | ServiceAccounts, Roles, and RoleBindings | Planned |
+| 08 | Ingress | Host/path routing and ingress controllers | Planned |
+| 09 | HPA | Scaling workloads under load | Planned |
+| 10 | Rolling updates + rollback | Safer releases and recovery | Planned |
 
-Progress log kept per-project in that project's own README.
+Only labs marked **Available** have folders in this repository. Planned labs will be added as they are implemented.
+
+## Suggested workflow
+
+1. Read the lab's README before applying manifests.
+2. Check the current Kubernetes context and namespace.
+3. Apply the lab resources and verify the expected behavior with `kubectl`.
+4. Inspect events and logs, then clean up the lab resources before moving on.
+
+## Cleanup
+
+When finished with the learning environment, remove the dedicated cluster:
+
+```bash
+kind delete cluster --name k8s-basics
+```
+
+Progress notes and lab-specific commands belong in each lab's own README.
